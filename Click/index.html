@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Twizzy Clicker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="dropdownOverlay" class="overlay">
+    <div class="menu">
+        <button id="closeButton" class="close-button">Close</button>
+        <button class="tablinks" onclick="openTab(event, 'options')">Options</button>
+        <button class="tablinks" onclick="openTab(event, 'cosmetics')">Cosmetics</button>
+        <button class="tablinks" onclick="openTab(event, 'stats')">Stats</button>
+    </div>
+
+    <div id="options" class="tabcontent">
+        <h3>Options</h3>
+        <label for="keybind">Click Key:</label>
+        <input type="text" id="keybind" name="keybind" value=" " readonly>
+        <br>
+        <button onclick="resetKeybind()">Reset Keybind</button>
+        <br>
+        <label for="volumeSlider">Volume:</label>
+        <input type="range" id="volumeSlider" name="volumeSlider" min="0" max="1" step="0.1" value="0.5" onchange="updateVolume()">
+    </div>
+
+    <div id="cosmetics" class="tabcontent">
+        <h3>Cosmetics</h3>
+        <label for="yeatStyle">Select Yeat Style:</label>
+        <select id="yeatStyle" onchange="setYeat(this.value)">
+            <option value="1">Style 1</option>
+            <option value="2">Style 2</option>
+            <option value="3">Style 3</option>
+            <option value="lyfe" id="lyfeOption" style="display:none;">Lyfë Style</option>
+        </select>
+        <br>
+        <label for="clickSoundSelect">Click Sound:</label>
+        <select id="clickSoundSelect" onchange="setClickSound(this.value)">
+            <option value="click">Default Click</option>
+            <option value="bell" id="bellOption" style="display:none;">Bell Sound</option>
+        </select>
+    </div>
+
+    <div id="stats" class="tabcontent">
+        <h3>Stats</h3>
+        <p id="clickCount">Total Clicks: 0</p>
+        <p id="honeybunCount">Honeybuns Bought: 0</p>
+        <p id="tonkaCount">Tonkas Bought: 0</p>
+        <button onclick="importData()">Import Data</button>
+        <button onclick="exportData()">Export Data</button>        
+    </div>
+</div>
+
+<!-- Menu button positioned in top right corner -->
+<button id="menuButtonTopRight" class="menu-button">Menu</button>
+
+<div id="gameContainer">
+    <img id="yeat" src="Styles/yeat_style_1.png" alt="Yeat Image" width="500" height="500">
+    <div class="info">
+        <h1>Twizzy Clicker</h1>
+        <p id="money">Monëy: 0</p>
+        <p id="clickAmount">Click: +1</p>
+        
+        <h2>Luh Upgrades</h2>
+        <button id="upgradeButton" onclick="buyUpgrade('honeybun')">Buy Honeybun (Cost: 50 Monëy)</button>
+        <button id="tonka" onclick="buyUpgrade('tonka')">Buy Tonka (Cost: 10000 Monëy)</button>
+        
+        <h2>Luh Twiz Shop</h2>
+        <button id="turntBell" onclick="buyUpgrade('turntBell')">Buy Turnt Bell (Cost: 10000 Monëy)</button>
+        <button id="lyfeStyle" onclick="buyUpgrade('lyfeStyle')">Buy Lyfë Style (Cost: 100000 Monëy)</button>
+    </div>
+</div>
+
+<audio id="clickSound" src="sfxs/click.wav"></audio>
+<audio id="bellSound" src="sfxs/bell.wav"></audio>
+
+<script src="script.js"></script>
+</body>
+</html>
